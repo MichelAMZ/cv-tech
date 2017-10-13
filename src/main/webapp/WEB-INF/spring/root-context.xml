@@ -27,26 +27,26 @@
 
 	<context:component-scan base-package="com.mamouz.cv" />
 
-<!-- 	<beans:bean -->
-<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
-<!-- 		<beans:property name="prefix"> -->
-<!-- 			<beans:value>/views</beans:value> -->
-<!-- 		</beans:property> -->
-<!-- 		<beans:property name="suffix"> -->
-<!-- 			<beans:value>.jsp</beans:value> -->
-<!-- 		</beans:property> -->
-<!-- 	</beans:bean> -->
+	<!-- <beans:bean -->
+	<!-- class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+	<!-- <beans:property name="prefix"> -->
+	<!-- <beans:value>/views</beans:value> -->
+	<!-- </beans:property> -->
+	<!-- <beans:property name="suffix"> -->
+	<!-- <beans:value>.jsp</beans:value> -->
+	<!-- </beans:property> -->
+	<!-- </beans:bean> -->
 
 	<!-- INTERNATIONNALISATION -->
-<!-- 	<beans:bean id="messageSource" -->
-<!-- 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> -->
-<!-- 		<beans:property name="basename"> -->
-<!-- 			<beans:value>classpath:messages</beans:value> -->
-<!-- 		</beans:property> -->
-<!-- 		<beans:property name="defaultEncoding"> -->
-<!-- 			<beans:value>UT-8</beans:value> -->
-<!-- 		</beans:property> -->
-<!-- 	</beans:bean> -->
+	<!-- <beans:bean id="messageSource" -->
+	<!-- class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> -->
+	<!-- <beans:property name="basename"> -->
+	<!-- <beans:value>classpath:messages</beans:value> -->
+	<!-- </beans:property> -->
+	<!-- <beans:property name="defaultEncoding"> -->
+	<!-- <beans:value>UT-8</beans:value> -->
+	<!-- </beans:property> -->
+	<!-- </beans:bean> -->
 
 
 
@@ -55,25 +55,29 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="datasource" />
 
+		<beans:property name="hibernateProperties">
+			<beans:props>
+				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect
+				</beans:prop>
+				<beans:prop key="hibernate.show_sql">true</beans:prop>
+				<beans:prop key="format_sql">true</beans:prop>
+				<beans:prop key="hibernate.generate_statistics">true</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
+			</beans:props>
+		</beans:property>
+
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.mamouz.cv.entity.Profile</beans:value>
 				<beans:value>com.mamouz.cv.entity.TitreCV</beans:value>
 			</beans:list>
 		</beans:property>
-
-		<beans:property name="hibernateProperties">
-			<beans:props>
-				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
-				<beans:prop key="hibernate.show_sql">true</beans:prop>
-				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
-			</beans:props>
-		</beans:property>
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

@@ -3,34 +3,33 @@
  */
 package com.mamouz.cv.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @author mikak
  *
  */
 @Entity
-@Table(name="T_TITRE_CV")
-public class TitreCV {
+public class TitreCV implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// ----------------- PROPRIETES ---------------------//
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTitreCV;
+	private long idTitreCV;
 	
 	private String titre;
 
 	private String typePoste;
-	
-//	@ManyToMany (cascade = CascadeType.ALL)
-//	@JoinTable(name="T_PROFILE",
-//	joinColumns = {@JoinColumn(name="idProfile")},
-//	inverseJoinColumns = {@JoinColumn(name="idTitreCV")} )
-//	private Set<Profile> profile = new HashSet<Profile>(0);
 	
 	//------- CONSTRUCTEURS ------------------------//
 	
@@ -54,14 +53,14 @@ public class TitreCV {
 	/**
 	 * @return the idTitreCV
 	 */
-	public int getIdTitreCV() {
+	public long getIdTitreCV() {
 		return idTitreCV;
 	}
 
 	/**
 	 * @param idTitreCV the idTitreCV to set
 	 */
-	public void setIdTitreCV(int idTitreCV) {
+	public void setIdTitreCV(long idTitreCV) {
 		this.idTitreCV = idTitreCV;
 	}
 

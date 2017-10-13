@@ -3,28 +3,43 @@
  */
 package com.mamouz.cv.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author mikak
  *
  */
 @Entity
-@Table(name = "T_PROFILE")
-public class Profile {
+public class Profile implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// ----------- PROPRIETES ---------------------//
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idProfile;
+	private long idProfile;
 
 	private String civilite;
 
@@ -40,14 +55,13 @@ public class Profile {
 	private String reseauSociaux;
 
 	// DATE CREATION ET MISE A JOUR
+	 private Date dateCreate;
 
-//	 private LocalDate dateCreate;
-//	
-//	 private LocalDate dateUpdate;
+	 private Date dateUpdate;
 
 	// ADRESSE
 
-	private int numeroRue;
+	private String numeroRue;
 
 	private String nomRue;
 
@@ -63,15 +77,12 @@ public class Profile {
 
 	private String Email;
 	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinTable(name="T_PROFILE_TITRECV")
-//	private TitreCV titreCV;
-	
-//	@ManyToMany (cascade = CascadeType.ALL)
-//	@JoinTable(name="T_TITRE_CV",
-//	joinColumns = {@JoinColumn(name="idProfile")},
-//	inverseJoinColumns = {@JoinColumn(name="idTitreCV")} )
-//	private Set<TitreCV> titre_cv = new HashSet<TitreCV>(0);
+
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name="PROFILE_TITRE_CV",
+	joinColumns = {@JoinColumn(name="idProfile")},
+	inverseJoinColumns = {@JoinColumn(name="idTitreCV")} )
+	private Set<TitreCV> titre_cv = new HashSet<TitreCV>(0);
 
 	// ----------- CONSTRUCTEURS -----------------//
 
@@ -81,40 +92,57 @@ public class Profile {
 	public Profile() {
 	}
 
-	
+
+	public Profile(String civilite, String nom, String prenom, Date dateNaiss, int age, String reseauSociaux,
+			Date dateCreate, Date dateUpdate, String numeroRue, String nomRue, String autre, int codePostale,
+			String ville, String pays, int telephone, String email, Set<TitreCV> titre_cv) {
+		super();
+		this.civilite = civilite;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaiss = dateNaiss;
+		this.age = age;
+		this.reseauSociaux = reseauSociaux;
+		this.dateCreate = dateCreate;
+		this.dateUpdate = dateUpdate;
+		this.numeroRue = numeroRue;
+		this.nomRue = nomRue;
+		this.autre = autre;
+		CodePostale = codePostale;
+		this.ville = ville;
+		this.pays = pays;
+		this.telephone = telephone;
+		Email = email;
+		this.titre_cv = titre_cv;
+	}
 
 
-	public Profile(String civilite, String nom, String prenom, Date dateNaiss, int age, String reseauSociaux, int numeroRue,
-		String nomRue, String autre, int codePostale, String ville, String pays, int telephone, String email,
-		TitreCV titreCV) {
-	super();
-	this.civilite = civilite;
-	this.nom = nom;
-	this.prenom = prenom;
-	this.dateNaiss = dateNaiss;
-	this.age = age;
-	this.reseauSociaux = reseauSociaux;
-	this.numeroRue = numeroRue;
-	this.nomRue = nomRue;
-	this.autre = autre;
-	CodePostale = codePostale;
-	this.ville = ville;
-	this.pays = pays;
-	this.telephone = telephone;
-	Email = email;
-}
-
-
-	// ------------ GETTERS AND SETTERS --------------------//
-
-	
-	
 	/**
-	 * @param idProfile
-	 *            the idProfile to set
+	 * @return the idProfile
 	 */
-	public void setIdProfile(int idProfile) {
+	public long getIdProfile() {
+		return idProfile;
+	}
+
+	/**
+	 * @param idProfile the idProfile to set
+	 */
+	public void setIdProfile(long idProfile) {
 		this.idProfile = idProfile;
+	}
+
+	/**
+	 * @return the civilite
+	 */
+	public String getCivilite() {
+		return civilite;
+	}
+
+	/**
+	 * @param civilite the civilite to set
+	 */
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
 	}
 
 	/**
@@ -123,17 +151,9 @@ public class Profile {
 	public String getNom() {
 		return nom;
 	}
-	
-	/**
-	 * @return the idProfile
-	 */
-	public int getIdProfile() {
-		return idProfile;
-	}
 
 	/**
-	 * @param nom
-	 *            the nom to set
+	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -147,34 +167,24 @@ public class Profile {
 	}
 
 	/**
-	 * @param prenom
-	 *            the prenom to set
+	 * @param prenom the prenom to set
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 
 	/**
-	 * @param age
-	 *            the age to set
+	 * @return the numeroRue
 	 */
-	public void setAge(int age) {
-
+	public String getNumeroRue() {
+		return numeroRue;
 	}
 
 	/**
-	 * @return the civilite
+	 * @param numeroRue the numeroRue to set
 	 */
-	public String getCivilite() {
-		return civilite;
-	}
-
-	/**
-	 * @param civilite
-	 *            the civilite to set
-	 */
-	public void setCivilite(String civilite) {
-		this.civilite = civilite;
+	public void setNumeroRue(String numeroRue) {
+		this.numeroRue = numeroRue;
 	}
 
 	/**
@@ -185,48 +195,10 @@ public class Profile {
 	}
 
 	/**
-	 * @param dateNaiss
-	 *            the dateNaiss to set
+	 * @param dateNaiss the dateNaiss to set
 	 */
 	public void setDateNaiss(Date dateNaiss) {
 		this.dateNaiss = dateNaiss;
-	}
-
-	/**
-	 * @return the age
-	 */
-	public int getAge() {
-		return age;
-	}
-
-	/**
-	 * @return the reseauSociaux
-	 */
-	public String getReseauSociaux() {
-		return reseauSociaux;
-	}
-
-	/**
-	 * @param reseauSociaux
-	 *            the reseauSociaux to set
-	 */
-	public void setReseauSociaux(String reseauSociaux) {
-		this.reseauSociaux = reseauSociaux;
-	}
-
-	/**
-	 * @return the numeroRue
-	 */
-	public int getNumeroRue() {
-		return numeroRue;
-	}
-
-	/**
-	 * @param numeroRue
-	 *            the numeroRue to set
-	 */
-	public void setNumeroRue(int numeroRue) {
-		this.numeroRue = numeroRue;
 	}
 
 	/**
@@ -237,26 +209,24 @@ public class Profile {
 	}
 
 	/**
-	 * @param nomRue
-	 *            the nomRue to set
+	 * @param nomRue the nomRue to set
 	 */
 	public void setNomRue(String nomRue) {
 		this.nomRue = nomRue;
 	}
 
 	/**
-	 * @return the autre
+	 * @return the reseauSociaux
 	 */
-	public String getAutre() {
-		return autre;
+	public String getReseauSociaux() {
+		return reseauSociaux;
 	}
 
 	/**
-	 * @param autre
-	 *            the autre to set
+	 * @param reseauSociaux the reseauSociaux to set
 	 */
-	public void setAutre(String autre) {
-		this.autre = autre;
+	public void setReseauSociaux(String reseauSociaux) {
+		this.reseauSociaux = reseauSociaux;
 	}
 
 	/**
@@ -267,8 +237,7 @@ public class Profile {
 	}
 
 	/**
-	 * @param codePostale
-	 *            the codePostale to set
+	 * @param codePostale the codePostale to set
 	 */
 	public void setCodePostale(int codePostale) {
 		CodePostale = codePostale;
@@ -282,8 +251,7 @@ public class Profile {
 	}
 
 	/**
-	 * @param ville
-	 *            the ville to set
+	 * @param ville the ville to set
 	 */
 	public void setVille(String ville) {
 		this.ville = ville;
@@ -297,8 +265,7 @@ public class Profile {
 	}
 
 	/**
-	 * @param pays
-	 *            the pays to set
+	 * @param pays the pays to set
 	 */
 	public void setPays(String pays) {
 		this.pays = pays;
@@ -312,8 +279,7 @@ public class Profile {
 	}
 
 	/**
-	 * @param telephone
-	 *            the telephone to set
+	 * @param telephone the telephone to set
 	 */
 	public void setTelephone(int telephone) {
 		this.telephone = telephone;
@@ -327,11 +293,83 @@ public class Profile {
 	}
 
 	/**
-	 * @param email
-	 *            the email to set
+	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
 		Email = email;
 	}
-	
+
+	/**
+	 * @return the autre
+	 */
+	public String getAutre() {
+		return autre;
+	}
+
+	/**
+	 * @param autre the autre to set
+	 */
+	public void setAutre(String autre) {
+		this.autre = autre;
+	}
+
+	/**
+	 * @param age the age to set
+	 */
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	/**
+	 * @return the age
+	 */
+	public int getAge() {
+		return age;
+	}
+
+	/**
+	 * @return the dateCreate
+	 */
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+	/**
+	 * @param dateCreate the dateCreate to set
+	 */
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
+
+	/**
+	 * @return the dateUpdate
+	 */
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+
+	/**
+	 * @param dateUpdate the dateUpdate to set
+	 */
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
+	}
+
+	/**
+	 * @return the titre_cv
+	 */
+	public Set<TitreCV> getTitre_cv() {
+		return titre_cv;
+	}
+
+	/**
+	 * @param titre_cv the titre_cv to set
+	 */
+	public void setTitre_cv(Set<TitreCV> titre_cv) {
+		this.titre_cv = titre_cv;
+	}
+
+
 }

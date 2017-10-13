@@ -55,7 +55,7 @@ public class ProfileService implements IProfileService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(long id) {
 		try {
 			log.info("--------------- IN creremoveate ProfileService ----------------");
 			
@@ -91,7 +91,7 @@ public class ProfileService implements IProfileService {
 	}
 
 	@Override
-	public Profile findById(int id) {
+	public Profile findById(long id) {
 
 		Profile p = new Profile();
 		

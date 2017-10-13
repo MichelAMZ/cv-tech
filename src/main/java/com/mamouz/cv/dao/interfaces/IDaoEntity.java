@@ -13,9 +13,9 @@ import java.util.List;
 public interface IDaoEntity <T, PK>{
 	
 	public Boolean create(T t);
-	public void remove(int id); 
+	public void remove(long id); 
 	public void update(T t);
-	public T findById(int id);
+	public T findById(long id);
 	public List<T> findByCriteria(String criteria);
 	public List<T> findAll();
 }

@@ -40,8 +40,9 @@ public class ProfileDao implements IProfile {
 
 			// Début de la transaction.
 			Transaction tx = session.beginTransaction();
-			
-			// Sauvegarde ou mise à jour du profile.
+
+			// Date de la création.
+						
 			session.saveOrUpdate(p);
 			tx.commit();
 
@@ -60,7 +61,7 @@ public class ProfileDao implements IProfile {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(long id) {
 		try {
 			log.info("\033[43m----------------- IN remove Profile ----------------\033[0m\n");
 
@@ -95,14 +96,15 @@ public class ProfileDao implements IProfile {
 	public void update(Profile p) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+
 		session.saveOrUpdate(p);
 		tx.commit();
 		session.close();
 	}
 
 	@Override
-	public Profile findById(int id) {
-		Session session = this.sessionFactory.openSession();	
+	public Profile findById(long id) {
+		Session session = this.sessionFactory.openSession();
 		Profile p = session.load(Profile.class, id);
 		return p;
 	}
@@ -111,8 +113,9 @@ public class ProfileDao implements IProfile {
 	public List<Profile> findByCriteria(String criteria) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<Profile> profileList = session.createQuery("select * from Profile where criteria like %:param% ").setParameter("param", criteria).list();
-		session.close(); 
+		List<Profile> profileList = session.createQuery("select * from Profile where criteria like %:param% ")
+				.setParameter("param", criteria).list();
+		session.close();
 		return profileList;
 	}
 
@@ -122,6 +125,12 @@ public class ProfileDao implements IProfile {
 		@SuppressWarnings("unchecked")
 		List<Profile> profileList = session.createQuery("from Profile").list();
 		session.close();
+		if (profileList == null) {
+			Object obj = "Rien à afficher dans la liste !";
+			return profileList = (List) obj;
+		}
+
 		return profileList;
 	}
+
 }

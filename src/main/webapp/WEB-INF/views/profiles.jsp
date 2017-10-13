@@ -44,7 +44,7 @@
 
 	<div class="container">
 		<div class="container-fluid">
-			<h1>Liste de profile enregistrés</h1>
+			<h1>Liste de profiles enregistrés</h1>
 			<a href="createProfile"><button type="button" class="btn btn-secondary btn-lg btn-block">
 				Créer un CV
 			</button></a>

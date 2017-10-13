@@ -41,7 +41,7 @@ public class TitreCVServie implements ITitreService {
 	 * @see com.mamouz.cv.service.interfaces.IService#remove(int)
 	 */
 	@Override
-	public void remove(int id) {
+	public void remove(long id) {
 		titreCVDao.remove(id);
 
 	}
@@ -59,7 +59,7 @@ public class TitreCVServie implements ITitreService {
 	 * @see com.mamouz.cv.service.interfaces.IService#findById(int)
 	 */
 	@Override
-	public TitreCV findById(int id) {
+	public TitreCV findById(long id) {
 		return titreCVDao.findById(id);
 	}
 

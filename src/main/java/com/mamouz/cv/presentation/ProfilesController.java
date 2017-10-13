@@ -33,13 +33,14 @@ public class ProfilesController {
 
 		logger.info("\033[43m--------------IN Home ProfileController ----------------\033[0m\n");
 
-		model.addAttribute("profile", new Profile());
-
-		Object ob = profileService.findAll();
-
-		if (ob != null) {
-			model.addAttribute("profiles", profileService.findAll());
-		}
+			Object obj = profileService.findAll();
+			if(obj != null){
+				model.addAttribute("profiles", profileService.findAll());
+			}
+			else{
+				String err =  "Rien à afficher !";
+				model.addAttribute("profiles", err);
+			}
 
 		logger.info("\033[43m--------------OUT Home ProfileController ----------------\033[0m\n");
 		return "profiles";
@@ -70,17 +71,4 @@ public class ProfilesController {
 		return "createProfile";
 	}
 	
-//	@RequestMapping(value = "/profile")
-//	public Profile getProfileById(Profile p, Model model){
-//		logger.info("\033[43m--------------IN edit ProfileController ----------------\033[0m\n");
-//
-//		p = profileService.findById(p.getIdProfile());
-//
-//		model.addAttribute("profile", p);
-//		
-//		logger.info("\033[43m--------------OUT edit ProfileController ----------------\033[0m\n");
-//		
-//		return p;
-//	}
-
 }

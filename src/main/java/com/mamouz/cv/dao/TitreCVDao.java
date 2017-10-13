@@ -71,7 +71,7 @@ public class TitreCVDao implements ITitreCV {
 	 * @see com.mamouz.cv.service.interfaces.IService#remove(int)
 	 */
 	@Override
-	public void remove(int id) {
+	public void remove(long id) {
 
 		try {
 			log.info("\033[43m----------------- IN remove Adresse ----------------\033[0m\n");
@@ -124,7 +124,7 @@ public class TitreCVDao implements ITitreCV {
 	 * @see com.mamouz.cv.service.interfaces.IService#findById(int)
 	 */
 	@Override
-	public TitreCV findById(int id) {
+	public TitreCV findById(long id) {
 		Session session = this.sessionFactory.openSession();
 		TitreCV t = session.load(TitreCV.class, id);
 		return t;

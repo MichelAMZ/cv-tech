@@ -63,114 +63,128 @@
 					</f:select>
 				</div>
 
-<!-- 				<div class="form-group"> -->
-					<!--     <select class="form-control" id="civilite"> -->
-					<!--     <span class="input-group-addon">Civilité :</span> -->
-					<!--       <option value="Mr">Monsieur</option> -->
-					<!--       <option value="Mme">Madame</option> -->
-					<!--       <option value="Mle">Mademoiselle</option> -->
-					<!--     </select> -->
-					<!--   </div> -->
+				<div class="input-group">
+					<span class="input-group-addon">Nom :</span>
+					<f:input path="nom" class="form-control" placeholder=" Votre Nom" />
+				</div>
+				<br>
 
+				<div class="input-group">
+					<span class="input-group-addon">Prénom :</span>
+					<f:input path="prenom" class="form-control"
+						placeholder=" Votre prenom" />
+				</div>
+				<br>
 
+				<div class="input-group">
+					<span class="input-group-addon">Date de naissance :</span>
+					<f:input type="date" path="dateNaiss" class="form-control"
+						placeholder=" Votre date de naissance" />
+				</div>
+				<!-- 					<br> /////////////////////////// ADRESSE -->
+				<!-- 					/////////////////////////////////////// -->
 
-					<!-- 				<div class="input-group"> -->
-					<!-- 					<span class="input-group-addon">Civilité :</span> -->
-					<%-- 					<f:input path="civilite" class="form-control" --%>
-					<%-- 						placeholder=" Mr / Mme / Mle" /> --%>
-					<!-- 				</div> -->
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">Numero :</span>
+					<f:input path="numeroRue" class="form-control"
+						placeholder=" Numero de la rue " />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Nom :</span>
-						<f:input path="nom" class="form-control" placeholder=" Votre Nom" />
-					</div>
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">Nom :</span>
+					<f:input path="nomRue" class="form-control"
+						placeholder=" Nom de votre rue " />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Prénom :</span>
-						<f:input path="prenom" class="form-control"
-							placeholder=" Votre prenom" />
-					</div>
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">Autre :</span>
+					<f:input path="autre" class="form-control" placeholder=" Autre " />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Date de naissance :</span>
-						<f:input  type="date" path="dateNaiss" class="form-control"
-							placeholder=" Votre date de naissance" />
-					</div>
-					<br> /////////////////////////// ADRESSE
-					///////////////////////////////////////
+				<div class="input-group">
+					<span class="input-group-addon">Code postale :</span>
+					<f:input path="CodePostale" class="form-control"
+						placeholder=" le code postale" />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Numero :</span>
-						<f:input path="numeroRue" class="form-control"
-							placeholder=" Numero de la rue " />
-					</div>
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">Ville :</span>
+					<f:input path="ville" class="form-control" placeholder=" Ville " />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Nom :</span>
-						<f:input path="nomRue" class="form-control"
-							placeholder=" Nom de votre rue " />
-					</div>
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">pays :</span>
+					<f:input path="pays" class="form-control" placeholder=" Pays " />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Autre :</span>
-						<f:input path="autre" class="form-control" placeholder=" Autre " />
-					</div>
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">Telephone :</span>
+					<f:input path="telephone" class="form-control"
+						placeholder=" Numero de téléphone " />
+				</div>
+				<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Code postale :</span>
-						<f:input path="CodePostale" class="form-control"
-							placeholder=" le code postale" />
-					</div>
-					<br>
+				<div class="input-group">
+					<span class="input-group-addon">Email :</span>
+					<f:input path="Email" class="form-control" placeholder=" Email " />
+				</div>
 
-
-					<div class="input-group">
-						<span class="input-group-addon">Ville :</span>
-						<f:input path="ville" class="form-control" placeholder=" Ville " />
-					</div>
-					<br>
-
-					<div class="input-group">
-						<span class="input-group-addon">pays :</span>
-						<f:input path="pays" class="form-control" placeholder=" Pays " />
-					</div>
-					<br>
-
-					<div class="input-group">
-						<span class="input-group-addon">Telephone :</span>
-						<f:input path="telephone" class="form-control"
-							placeholder=" Numero de téléphone " />
-					</div>
-					<br>
-
-					<div class="input-group">
-						<span class="input-group-addon">Email :</span>
-						<f:input path="Email" class="form-control" placeholder=" Email " />
-					</div>
-					<br> /////////////////////////////// TITRE DU CV
+				<br> /////////////////////////////// TITRE DU CV
 					////////////////////////////////////////
+					
+<div class="container">
+	<f:form modelAttribute="titreCV" method="post" action="saveTitreCV">
+		<table>
+			<tr>
+				<th>TITRE DU CV:</th>
+				<td><f:input path="titre" /></td>
+			</tr>
+			<tr>
+				<th>POSTE RECHERCHE:</th>
+				<td><f:input path="typePoste" /></td>
+			</tr>
+		
+			<tr>
+<%-- 				<td><f:hidden path="idTitreCV" /></td> --%>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Save"></td>
+			</tr>
+		</table>
+		<br>
 
-					<div class="input-group">
-						<span class="input-group-addon">Titre CV :</span>
-
-					</div>
-					<br>
-					<div class="input-group">
-						<f:hidden path="idProfile" />
-					</div>
-					<br>
+	</f:form>
+</div>
 
 
-					<button class="btn btn-default" type="submit" value="Save">
-						SAVE</button>
 
-					<br>
+				<!-- 					<div class="input-group"> -->
+				<!-- 						<span class="input-group-addon">Poste recherché :</span> -->
+				<%-- 						<f:input path="titre_cv.titre" class="form-control" placeholder=" developpeur informatique " /> --%>
+				<!-- 					</div> -->
+
+				<!-- 					<div class="input-group"> -->
+				<!-- 						<span class="input-group-addon">Type de poste :</span> -->
+				<%-- 						<f:input path="titre_cv.typePoste" class="form-control" placeholder=" .Net / java-jee... " /> --%>
+				<!-- 					</div> -->
+
+				<br>
+				<div class="input-group">
+					<f:hidden path="idProfile" />
+				</div>
+				<br>
+
+
+				<button class="btn btn-default" type="submit" value="Save">
+					SAVE</button>
+
+				<br>
 			</f:form>
 		</div>
 
