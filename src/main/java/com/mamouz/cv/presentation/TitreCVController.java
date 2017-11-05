@@ -36,18 +36,18 @@ public class TitreCVController {
 	@RequestMapping(value = "/titreCV")
 	public String getTitreCV(Locale locale, Model model) {
 
-		logger.info("\033[43m--------------IN Home ProfileController ----------------\033[0m\n");
+		logger.info("\033[43m--------------IN Home TitreCVController ----------------\033[0m\n");
 	
 		model.addAttribute("titreCV", new TitreCV());
 
-		logger.info("\033[43m--------------OUT Home ProfileController ----------------\033[0m\n");
+		logger.info("\033[43m--------------OUT Home TitreCVController ----------------\033[0m\n");
 		return "titreCV";
 	}
 	
 	@RequestMapping(value = "/saveTitreCV")
 	public String createTitreCV(TitreCV t, Model model) {
 
-		logger.info("\033[43m--------------IN Create TitreCV Controller ----------------\033[0m\n");
+		logger.info("\033[43m--------------IN Create TitreCVCV Controller ----------------\033[0m\n");
 		
 		titreService.create(t);
 		
@@ -56,19 +56,19 @@ public class TitreCVController {
 		model.addAttribute("titreCV", new TitreCV());
 		model.addAttribute("listeTitreCV", titreService.findAll());
 
-		logger.info("\033[43m--------------OUT Create TitreCV Controller ----------------\033[0m\n");
+		logger.info("\033[43m--------------OUT Create TitreCVCV Controller ----------------\033[0m\n");
 
 		return "profiles";
 	}
 
 	@RequestMapping(value = "/deleteTitreCV")
 	public String deleteTitreCV(int id, Model model) {
-		logger.info("\033[43m--------------IN delete TitreCV Controller ----------------\033[0m\n");
+		logger.info("\033[43m--------------IN delete TitreCVCV Controller ----------------\033[0m\n");
 		
 		titreService.remove(id);
 		model.addAttribute("titreCV", new TitreCV());
 		model.addAttribute("listeTitreCV", titreService.findAll());
-		logger.info("\033[43m--------------OUT delete TitreCV Controller ----------------\033[0m\n");
+		logger.info("\033[43m--------------OUT delete TitreCVCV Controller ----------------\033[0m\n");
 		return "profiles";
 	}
 

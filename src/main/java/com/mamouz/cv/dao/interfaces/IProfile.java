@@ -9,6 +9,6 @@ import com.mamouz.cv.entity.Profile;
  * @author mikak
  *
  */
-public interface IProfile extends IDaoEntity<Profile, Integer> {
+public interface IProfile extends IDaoEntity<Profile, Long> {
 
 }

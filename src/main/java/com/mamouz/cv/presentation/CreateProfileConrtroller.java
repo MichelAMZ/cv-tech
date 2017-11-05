@@ -56,8 +56,8 @@ public class CreateProfileConrtroller {
 		Profile profile2 = new Profile();
 		Set<Adresse> adresses = profile2.getAdresse();
 		
-		model.addAttribute("listeAdresses", adresses);
-		
+		model.addAttribute("adresses", adresses);
+				
 		logger.info("\033[43m--------------OUT Home ProfileController ----------------\033[0m\n");
 		
 		return "createProfile";

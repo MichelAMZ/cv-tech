@@ -43,29 +43,62 @@
 		</div>
 	</nav>
 
-<div class="container">
-	<f:form modelAttribute="titreCV" method="post" action="saveTitreCV">
-		<table>
-			<tr>
-				<th>TITRE DU CV:</th>
-				<td><f:input path="titre" /></td>
-			</tr>
-			<tr>
-				<th>POSTE RECHERCHE:</th>
-				<td><f:input path="typePoste" /></td>
-			</tr>
-		
-			<tr>
-				<td><f:hidden path="idTitreCV" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Save"></td>
-			</tr>
-		</table>
+	<div class="container">
+		<!-- -------------------------- TTITRE CV -------------------------------------->
+		<div class="container-fluid">
+			<f:form modelAttribute="titreCV" method="post" action="saveTitreCV"
+				name="formTitrecv">
+				<div class="input-group">
+			<span class="input-group-addon">TITRE DU CV:</span>
+			<f:input path="titre" class="form-control"
+				placeholder="TITRE: développeur java ..." />
+		</div>
+
+		<div class="input-group">
+			<span class="input-group-addon">POSTE RECHERCHE:</span>
+			<f:input path="typePoste" class="form-control"
+				placeholder=" JEE / ASP.NET ... " />
+		</div>
+
+		<div>
+			<f:hidden path="${p.idProfile}" />
+<!-- 			<a -->
+<%-- 								href="editProfile?id=${p.idProfile}"> Modifier </a> --%>
+		</div>
+		<div class="input-group">
+			<input type="submit" value="Save">
+		</div>
+				
+				
+				</f:form>
+		</div>
 		<br>
 
-	</f:form>
-</div>
+		
+
+<%-- 	<f:form modelAttribute="titreCV" method="post" action="saveTitreCV"> --%>
+
+	<!-- 		<table> -->
+	<!-- 			<tr> -->
+	<!-- 				<th>TITRE DU CV:</th> -->
+	<%-- 				<td><f:input path="titre" /></td> --%>
+	<!-- 			</tr> -->
+	<!-- 			<tr> -->
+	<!-- 				<th>POSTE RECHERCHE:</th> -->
+	<%-- 				<td><f:input path="typePoste" /></td> --%>
+	<!-- 			</tr> -->
+
+	<!-- 			<tr> -->
+	<%-- 				<td><f:hidden path="idTitreCV" /></td> --%>
+	<!-- 			</tr> -->
+	<!-- 			<tr> -->
+	<!-- 				<td><input type="submit" value="Save"></td> -->
+	<!-- 			</tr> -->
+	<!-- 		</table> -->
+	<!-- 		<br> -->
+
+	<%-- 	</f:form> --%>
+	</div>
 
 
 </body>

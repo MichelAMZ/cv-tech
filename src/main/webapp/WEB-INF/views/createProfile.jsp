@@ -1,24 +1,21 @@
 
 <%@ page session="false"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%><html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%><!DOCTYPE html>
+<html>
 <head>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title>CV</title>
 </head>
 <body>
-${ welcome}
+	${ welcome}
 
 	<div class="container">
 		<!-- Menus -->
@@ -54,12 +51,31 @@ ${ welcome}
 			<br>
 		</div>
 
+
+
 		<!-- ---------------------------FORMS PROFILE----------------------------- -->
+----- ttttttttest------
+
+
+
+<%-- <form action = "main.jsp" method = "GET"> --%>
+<!--          First Name: <input type = "text" name = "first_name"> -->
+<!--          <br /> -->
+<!--          Last Name: <input type = "text" name = "last_name" /> -->
+<!--          <input type = "submit" value = "Submit" /> -->
+<%--       </form> --%>
+
+
 
 		<f:form modelAttribute="profile" method="post" action="saveProfile"
 			name="formProfile">
-			
-		
+
+<c:forEach items="${adresses}" var="ad" varStatus="teamsLoop">
+<c:set value="${ad.numeroNomRue}" var="numeroNom" scope="request"/>
+
+</c:forEach>
+
+
 			<div class="container-fluid">
 				<div class="input-group">
 					<span class="input-group-addon">Civilité :</span>
@@ -191,6 +207,7 @@ ${ welcome}
 
 		</f:form>
 	</div>
+
 
 </body>
 </html>

@@ -53,6 +53,8 @@
 		</div>
 
 		<!-- ---------------------------FORMS PROFILE----------------------------- -->
+	
+		
 
 		<f:form modelAttribute="profile" method="post" action="saveProfile"
 			name="formProfile">
@@ -103,6 +105,7 @@
 				<br>
 
 			</div>
+
 
 			<!-- -------------------------- TTITRE CV -------------------------------------->
 			<div class="container-fluid">
