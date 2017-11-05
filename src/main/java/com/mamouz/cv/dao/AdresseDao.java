@@ -13,32 +13,28 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
-import com.mamouz.cv.dao.interfaces.ITitreCV;
+import com.mamouz.cv.dao.interfaces.IAdresse;
+import com.mamouz.cv.entity.Adresse;
 import com.mamouz.cv.entity.Login;
-import com.mamouz.cv.entity.TitreCV;
 
 /**
  * @author mikak
  *
  */
-@Repository("titreCVDao")
-public class TitreCVDao implements ITitreCV {
-
+@Repository("adresseDao")
+public class AdresseDao implements IAdresse {
 
 	@Resource(name = "hibernate4AnnotatedSessionFactory")
 	private SessionFactory sessionFactory;
-
-	private static final Logger log = Logger.getLogger(TitreCVDao.class);
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.mamouz.cv.service.interfaces.IService#create(java.lang.Object)
+	private static final Logger log = Logger.getLogger(ProfileDao.class);
+	
+	/* (non-Javadoc)
+	 * @see com.mamouz.cv.dao.interfaces.IDaoEntity#create(java.lang.Object)
 	 */
 	@Override
-	public Boolean create(TitreCV t) {
-
-		boolean createTitre = true;
+	public Boolean create(Adresse ad) {
+		boolean createAdresse = true;
 		try {
 			log.info("\033[43m----------------- IN create Adresse ----------------\033[0m\n");
 
@@ -48,32 +44,30 @@ public class TitreCVDao implements ITitreCV {
 			// Début de la transaction.
 			Transaction tx = session.beginTransaction();
 
-			// Sauvegarde ou mise à jour du profile.
-			session.saveOrUpdate(t);
+			// Date de la création.
+						
+			session.saveOrUpdate(ad);
 			tx.commit();
 
-			log.debug("\033[42mProfile créer avec succès : " + t + "\033[0m\n");
+			log.debug("\033[42mAdresse créer avec succès : " + ad + "\033[0m\n");
 
 			// fermeture de la session.
 			session.close();
 
 			log.info("\033[43m----------------- OUT create Adresse ----------------\033[0m\n");
 		} catch (Exception e) {
-			createTitre = false;
-			log.error("\033[45mProblème dans la création de Adresse : " + e + "\033[0m\n");
+			createAdresse = false;
+			log.error("\033[45mProblème dans la création de profile : " + e + "\033[0m\n");
 		}
 
-		return createTitre;
+		return createAdresse;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.mamouz.cv.service.interfaces.IService#remove(int)
+	/* (non-Javadoc)
+	 * @see com.mamouz.cv.dao.interfaces.IDaoEntity#remove(long)
 	 */
 	@Override
 	public void remove(long id) {
-
 		try {
 			log.info("\033[43m----------------- IN remove Adresse ----------------\033[0m\n");
 
@@ -84,16 +78,16 @@ public class TitreCVDao implements ITitreCV {
 			Transaction tx = session.beginTransaction();
 
 			// on récupère le profile à supprimer
-			TitreCV t = session.load(TitreCV.class, id);
+			Adresse ad = session.load(Adresse.class, id);
 
-			if (t != null) {
+			if (ad != null) {
 				// On supprime le profile.
-				session.delete(t);
+				session.delete(ad);
 			}
 
 			tx.commit();
 
-			log.debug("\033[42mProfile supprimé avec succès : \n" + t + "\033[0m\n");
+			log.debug("\033[42mProfile supprimé avec succès : \n" + ad + "\033[0m\n");
 
 			// fermeture de la session.
 			session.close();
@@ -105,59 +99,71 @@ public class TitreCVDao implements ITitreCV {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.mamouz.cv.service.interfaces.IService#update(java.lang.Object)
+	/* (non-Javadoc)
+	 * @see com.mamouz.cv.dao.interfaces.IDaoEntity#update(java.lang.Object)
 	 */
 	@Override
-	public void update(TitreCV t) {
+	public void update(Adresse ad) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(t);
+
+		session.saveOrUpdate(ad);
 		tx.commit();
 		session.close();
+
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.mamouz.cv.service.interfaces.IService#findById(int)
+	/* (non-Javadoc)
+	 * @see com.mamouz.cv.dao.interfaces.IDaoEntity#findById(long)
 	 */
 	@Override
-	public TitreCV findById(long id) {
+	public Adresse findById(long id) {
 		Session session = this.sessionFactory.openSession();
-		TitreCV t = session.load(TitreCV.class, id);
-		return t;
+		Adresse ad = session.load(Adresse.class, id);
+		return ad;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.mamouz.cv.service.interfaces.IService#findByCriteria(java.lang.
-	 * String)
+	/* (non-Javadoc)
+	 * @see com.mamouz.cv.dao.interfaces.IDaoEntity#findByCriteria(java.lang.String)
 	 */
 	@Override
-	public List<TitreCV> findByCriteria(String criteria) {
+	public List<Adresse> findByCriteria(String criteria) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<TitreCV> titreCVList = session.createQuery("select * from TitreCV where criteria like %:param% ").setParameter("param", criteria).list();
+		List<Adresse> adresseList = session.createQuery("select * from Adresse where criteria like %:param% ")
+				.setParameter("param", criteria).list();
 		session.close();
-		return titreCVList;
+		return adresseList;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.mamouz.cv.service.interfaces.IService#findAll()
+	/* (non-Javadoc)
+	 * @see com.mamouz.cv.dao.interfaces.IDaoEntity#findAll()
 	 */
 	@Override
-	public List<TitreCV> findAll() {
+	public List<Adresse> findAll() {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<TitreCV> titreCVList = session.createQuery("from TitreCV").list();
+		List<Adresse> adresseList = session.createQuery("from Adresse").list();
 		session.close();
-		return titreCVList;
+		if (adresseList == null) {
+			Object obj = "Rien à afficher dans la liste !";
+			return adresseList = (List) obj;
+		}
+
+		return adresseList;
 	}
+
+	@Override
+	public void register(Adresse user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Login validateUser(Login login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

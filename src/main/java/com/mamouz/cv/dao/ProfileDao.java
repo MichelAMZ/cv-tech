@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.mamouz.cv.dao.interfaces.IProfile;
+import com.mamouz.cv.entity.Login;
 import com.mamouz.cv.entity.Profile;
 
 /**
@@ -41,8 +42,6 @@ public class ProfileDao implements IProfile {
 			// Début de la transaction.
 			Transaction tx = session.beginTransaction();
 
-			// Date de la création.
-						
 			session.saveOrUpdate(p);
 			tx.commit();
 
@@ -104,8 +103,10 @@ public class ProfileDao implements IProfile {
 
 	@Override
 	public Profile findById(long id) {
+
 		Session session = this.sessionFactory.openSession();
 		Profile p = session.load(Profile.class, id);
+
 		return p;
 	}
 
@@ -113,7 +114,8 @@ public class ProfileDao implements IProfile {
 	public List<Profile> findByCriteria(String criteria) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<Profile> profileList = session.createQuery("select * from Profile where criteria like %:param% ")
+		List<Profile> profileList = session.createQuery("select * from Profile"
+				+ " where criteria like %:param% ")
 				.setParameter("param", criteria).list();
 		session.close();
 		return profileList;
@@ -126,11 +128,23 @@ public class ProfileDao implements IProfile {
 		List<Profile> profileList = session.createQuery("from Profile").list();
 		session.close();
 		if (profileList == null) {
-			Object obj = "Rien à afficher dans la liste !";
-			return profileList = (List) obj;
+
+			return null;
 		}
 
 		return profileList;
+	}
+
+	@Override
+	public void register(Profile user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Login validateUser(Login login) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

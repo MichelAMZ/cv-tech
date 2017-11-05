@@ -71,7 +71,6 @@
 				<beans:value>com.mamouz.cv.entity.Profile</beans:value>
 				<beans:value>com.mamouz.cv.entity.TitreCV</beans:value>
 				<beans:value>com.mamouz.cv.entity.Adresse</beans:value>
-				<beans:value>com.mamouz.cv.entity.Login</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

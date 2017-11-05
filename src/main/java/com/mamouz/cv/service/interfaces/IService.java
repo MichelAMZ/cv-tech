@@ -5,6 +5,8 @@ package com.mamouz.cv.service.interfaces;
 
 import java.util.List;
 
+import com.mamouz.cv.entity.Login;
+
 /**
  * @author mikak
  *
@@ -16,5 +18,7 @@ public interface IService <T, PK>{
 	public T findById(long id);
 	public List<T> findByCriteria(String criteria);
 	public List<T> findAll();
+	
+	
 }
 

@@ -1,6 +1,7 @@
 package com.mamouz.cv.presentation;
 
 import java.util.Locale;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mamouz.cv.entity.Adresse;
 import com.mamouz.cv.entity.Profile;
+import com.mamouz.cv.entity.TitreCV;
+import com.mamouz.cv.service.interfaces.IAdresseservice;
 import com.mamouz.cv.service.interfaces.IProfileService;
 import com.mamouz.cv.service.interfaces.ITitreService;
 
@@ -24,6 +28,7 @@ public class ProfilesController {
 
 	@Resource(name = "titreCVService")
 	private ITitreService titreService;
+	private IAdresseservice adService;
 
 	/*
 	 * HOME Profile liste et edit....
@@ -34,6 +39,7 @@ public class ProfilesController {
 		logger.info("\033[43m--------------IN Home ProfileController ----------------\033[0m\n");
 
 			Object obj = profileService.findAll();
+			
 			if(obj != null){
 				model.addAttribute("profiles", profileService.findAll());
 			}
@@ -62,11 +68,13 @@ public class ProfilesController {
 	public String editProfile(int id, Model model) {
 		logger.info("\033[43m--------------IN edit ProfileController ----------------\033[0m\n");
 		Profile p = profileService.findById(id);
-
+		//Set<Adresse> ad = p.getAdresse();
+		
 		profileService.update(p);
-
+		
 		model.addAttribute("profile", p);
-		model.addAttribute("profiles", profileService.findAll());
+		model.addAttribute("titreCV", new TitreCV());
+		model.addAttribute("adresse", new Adresse());
 		logger.info("\033[43m--------------OUT edit ProfileController ----------------\033[0m\n");
 		return "createProfile";
 	}

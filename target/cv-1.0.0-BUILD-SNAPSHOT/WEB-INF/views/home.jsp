@@ -39,22 +39,16 @@
 	<!-- fin navbar -->
 
 	<div class="container">
-	
-	<div class="page-header">
+		<div class="container-fluid">
+			<div class="well">
 				<p>${serverTime}</p>
-				<h1>PAGE D'ACCUEIL !</h1>    
-  </div>
-		
-<!-- 		<a href="createProfile"><button type="button" -->
-<!-- 				class="btn btn-secondary btn-lg btn-block">Créer un CV</button></a> -->
-				
-				<br>
-	
-			
-				<div class="col-sm-4" style="background-color: lavender;" align="center"><a href="login">Login</a></div>
-				<div class="col-sm-4" style="background-color: lavenderblush;" align="center"><a href="register">Register</a></div>
+				<h1>PAGE D'ACCUEIL !</h1>
+			</div>
+		</div>
+
+		<a href="createProfile"><button type="button"
+				class="btn btn-secondary btn-lg btn-block">Créer un CV</button></a>
 
 	</div>
-	
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%><html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><html>
 <head>
 
 <meta charset="utf-8">
@@ -18,8 +18,6 @@
 <title>CV</title>
 </head>
 <body>
-${ welcome}
-
 	<div class="container">
 		<!-- Menus -->
 		<nav class="navbar navbar-default">
@@ -58,8 +56,6 @@ ${ welcome}
 
 		<f:form modelAttribute="profile" method="post" action="saveProfile"
 			name="formProfile">
-			
-		
 			<div class="container-fluid">
 				<div class="input-group">
 					<span class="input-group-addon">Civilité :</span>
@@ -89,89 +85,99 @@ ${ welcome}
 					<f:input type="date" path="dateNaiss" class="form-control"
 						placeholder=" Votre date de naissance" />
 				</div>
-				<br> <br>
-				<div class="input-group">
-					<span class="input-group-addon">Email :</span>
-					<f:input path="Email" class="form-control" placeholder=" Email " />
-				</div>
-			</div>
+				<br>
 
+			</div>
+			
 			<!-- -------------------------- TTITRE CV -------------------------------------->
 			<div class="container-fluid">
 				<f:form modelAttribute="titreCV" method="post" action="saveTitreCV"
 					name="formTitrecv">
-
+					
 					<!-- -------------------------- ADRESSE -------------------------------------->
+					
+			<div class="container-fluid">
+				<f:form modelAttribute="adresse" method="post" action="saveAdresse"
+					name="formAdresse">
 
-					<div class="container-fluid">
-						<f:form modelAttribute="adresse" method="post"
-							action="saveAdresse" name="formAdresse">
-
-							<div class="input-group">
-								<span class="input-group-addon">Numero :</span>
-								<f:input path="numeroNomRue" class="form-control"
-									placeholder=" Numero et nom de la rue " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Autre :</span>
-								<f:input path="autre" class="form-control" placeholder=" Autre " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Code postale :</span>
-								<f:input path="CodePostale" class="form-control"
-									placeholder=" le code postale" />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Ville :</span>
-								<f:input path="ville" class="form-control" placeholder=" Ville " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">pays :</span>
-								<f:input path="pays" class="form-control" placeholder=" Pays " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Telephone :</span>
-								<f:input path="telephone" class="form-control"
-									placeholder=" Numero de téléphone " />
-							</div>
-
-							<div>
-								<f:hidden path="idAdresse" />
-							</div>
-
-							<!-- 					<input type="submit" value="Save"> -->
-
-						</f:form>
+					<div class="input-group">
+						<span class="input-group-addon">Numero :</span>
+						<f:input path="numeroRue" class="form-control"
+							placeholder=" Numero de la rue " />
 					</div>
 					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">Nom :</span>
+						<f:input path="nomRue" class="form-control"
+							placeholder=" Nom de votre rue " />
+					</div>
+					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">Autre :</span>
+						<f:input path="autre" class="form-control" placeholder=" Autre " />
+					</div>
+					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">Code postale :</span>
+						<f:input path="CodePostale" class="form-control"
+							placeholder=" le code postale" />
+					</div>
+					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">Ville :</span>
+						<f:input path="ville" class="form-control" placeholder=" Ville " />
+					</div>
+					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">pays :</span>
+						<f:input path="pays" class="form-control" placeholder=" Pays " />
+					</div>
+					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">Telephone :</span>
+						<f:input path="telephone" class="form-control"
+							placeholder=" Numero de téléphone " />
+					</div>
+					<br>
+
+					<div class="input-group">
+						<span class="input-group-addon">Email :</span>
+						<f:input path="Email" class="form-control" placeholder=" Email " />
+					</div>
+
+					<div>
+						<f:hidden path="idAdresse" />
+					</div>
+
+					<!-- 					<input type="submit" value="Save"> -->
+
+				</f:form>
+			</div>
+			<br>
 
 					<div class="input-group">
 						<span class="input-group-addon">TITRE DU CV:</span>
 						<f:input path="titre" class="form-control"
 							placeholder="TITRE: développeur java ..." />
 					</div>
-
+					
 					<div class="input-group">
 						<span class="input-group-addon">POSTE RECHERCHE:</span>
 						<f:input path="typePoste" class="form-control"
-							placeholder=" JEE / ASP.NET ... " />
+								placeholder=" JEE / ASP.NET ... " />
 					</div>
 
 					<div>
 						<f:hidden path="idTitreCV" />
 					</div>
 					<div class="input-group">
-						<input type="submit" value="Save">
+													<input type="submit" value="Save">
 					</div>
 
 				</f:form>
@@ -184,13 +190,15 @@ ${ welcome}
 			</div>
 			<br>
 
-			<!-- 			<button class="btn btn-default" type="submit" value="Save"> -->
-			<!-- 				SAVE</button> -->
+<!-- 			<button class="btn btn-default" type="submit" value="Save"> -->
+<!-- 				SAVE</button> -->
 
 			<br>
-
 		</f:form>
 	</div>
+
+
+
 
 </body>
 </html>

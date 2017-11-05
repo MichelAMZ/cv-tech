@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mamouz.cv.entity.Profile;
-import com.mamouz.cv.entity.TitreCV;
 import com.mamouz.cv.service.interfaces.IProfileService;
 import com.mamouz.cv.service.interfaces.ITitreService;
 
@@ -29,8 +28,6 @@ public class ProfileController {
 		logger.info("\033[43m--------------IN edit ProfileController ----------------\033[0m\n");
 
 		Profile profile = profileService.findById(id);
-		//TitreCV titreCV = titreService.findById(id);
-		//profile.getTitre_cv().add(titreCV);
 		
 		if (profile != null){
 			model.addAttribute("profile", profile);

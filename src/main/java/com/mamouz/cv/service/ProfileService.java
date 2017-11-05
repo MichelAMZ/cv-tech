@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.mamouz.cv.dao.interfaces.IProfile;
+import com.mamouz.cv.entity.Login;
 import com.mamouz.cv.entity.Profile;
 import com.mamouz.cv.service.interfaces.IProfileService;
 
@@ -33,15 +34,6 @@ public class ProfileService implements IProfileService {
 		boolean createProfileService = true;
 		try {
 			log.info("--------------- IN create ProfileService ----------------");
-			
-//			Date d = new Date();
-//			 java.sql.Date sqlDate = null;
-//			if(d != null)
-//			{
-//				sqlDate = (java.sql.Date) new Date(d.getTime());
-//			}
-//				
-//			p.setDateCreate(sqlDate);
 			
 			profileDao.create(p);
 
@@ -70,16 +62,7 @@ public class ProfileService implements IProfileService {
 	@Override
 	public void update(Profile p) {
 		try {
-			log.info("\033[43m--------------- IN creremoveate ProfileService ----------------\033[0m");
-			
-//			Date d = new Date();
-//			 java.sql.Date sqlDate = null;
-//			if(d != null)
-//			{
-//				sqlDate = (java.sql.Date) new Date(d.getTime());
-//			}
-//			p.setDateCreate(sqlDate);
-//			
+			log.info("\033[43m--------------- IN creremoveate ProfileService ----------------\033[0m");	
 			
 			profileDao.update(p);
 
@@ -118,6 +101,18 @@ public class ProfileService implements IProfileService {
 	@Override
 	public List<Profile> findAll() {
 		return profileDao.findAll();
+	}
+
+	@Override
+	public void register(Profile user) {
+		profileDao.register(user);
+		
+	}
+
+	@Override
+	public Login validateUser(Login login) {
+		profileDao.validateUser(login);
+		return null;
 	}
 
 }

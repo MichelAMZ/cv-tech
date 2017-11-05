@@ -4,7 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%><html>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %><html>
 <head>
 
 <meta charset="utf-8">
@@ -18,8 +18,6 @@
 <title>CV</title>
 </head>
 <body>
-${ welcome}
-
 	<div class="container">
 		<!-- Menus -->
 		<nav class="navbar navbar-default">
@@ -58,8 +56,6 @@ ${ welcome}
 
 		<f:form modelAttribute="profile" method="post" action="saveProfile"
 			name="formProfile">
-			
-		
 			<div class="container-fluid">
 				<div class="input-group">
 					<span class="input-group-addon">Civilité :</span>
@@ -89,11 +85,23 @@ ${ welcome}
 					<f:input type="date" path="dateNaiss" class="form-control"
 						placeholder=" Votre date de naissance" />
 				</div>
-				<br> <br>
+				<br>
+				
 				<div class="input-group">
 					<span class="input-group-addon">Email :</span>
-					<f:input path="Email" class="form-control" placeholder=" Email " />
+					<f:input type="email" path="email" class="form-control"
+						placeholder=" votre mail" />
 				</div>
+				<br>
+				
+				
+				<div class="input-group">
+					<span class="input-group-addon">Mot de passe :</span>
+					<f:input type="password" path="passwd" class="form-control"
+						placeholder=" Mot de passe " />
+				</div>
+				<br>
+
 			</div>
 
 			<!-- -------------------------- TTITRE CV -------------------------------------->
@@ -144,6 +152,7 @@ ${ welcome}
 								<f:input path="telephone" class="form-control"
 									placeholder=" Numero de téléphone " />
 							</div>
+							<br>
 
 							<div>
 								<f:hidden path="idAdresse" />

@@ -5,29 +5,30 @@ package com.mamouz.cv.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.web.context.annotation.SessionScope;
 
 /**
  * @author mikak
  *
  */
 @Entity
+@SessionScope
 public class Profile implements Serializable {
 
 	/**
@@ -48,6 +49,15 @@ public class Profile implements Serializable {
 	private String prenom;
 
 	private Date dateNaiss;
+	
+	private String email;
+	
+	private String passwd;
+	
+	private Timestamp last_used = new Timestamp(System.currentTimeMillis());
+	
+	private Login login;
+	
 
 	@Transient
 	private int age; // Age calculer à partir de l'année de naissance.
@@ -55,67 +65,65 @@ public class Profile implements Serializable {
 	private String reseauSociaux;
 
 	// DATE CREATION ET MISE A JOUR
-	 private Date dateCreate;
+	private Timestamp dateCreate = new Timestamp(System.currentTimeMillis());
 
-	 private Date dateUpdate;
+	private Timestamp dateUpdate = new Timestamp(System.currentTimeMillis());
 
-	// ADRESSE
-
-	private String numeroRue;
-
-	private String nomRue;
-
-	private String autre;
-
-	private int CodePostale;
-
-	private String ville;
-
-	private String pays;
-
-	private int telephone;
-
-	private String Email;
-	
-
-	@ManyToMany (cascade = CascadeType.ALL)
-	@JoinTable(name="PROFILE_TITRE_CV",
-	joinColumns = {@JoinColumn(name="idProfile")},
-	inverseJoinColumns = {@JoinColumn(name="idTitreCV")} )
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@Lazy(false)
+	@JoinTable(name = "PROFILE_TITRE_CV", joinColumns = { @JoinColumn(name = "idProfile") }, inverseJoinColumns = {
+			@JoinColumn(name = "idTitreCV") })
 	private Set<TitreCV> titre_cv = new HashSet<TitreCV>(0);
 
-	// ----------- CONSTRUCTEURS -----------------//
-
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@Lazy(false)
+	@JoinTable(name = "PROFILE_ADRESEE", joinColumns = { @JoinColumn(name = "idProfile") }, inverseJoinColumns = {
+			@JoinColumn(name = "idAdresse") })
+	private Set<Adresse> adresse = new HashSet<Adresse>(0);
+	
 	/**
 	 * 
 	 */
 	public Profile() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-
-	public Profile(String civilite, String nom, String prenom, Date dateNaiss, int age, String reseauSociaux,
-			Date dateCreate, Date dateUpdate, String numeroRue, String nomRue, String autre, int codePostale,
-			String ville, String pays, int telephone, String email, Set<TitreCV> titre_cv) {
+	/**
+	 * @param civilite
+	 * @param nom
+	 * @param prenom
+	 * @param dateNaiss
+	 * @param email
+	 * @param passwd
+	 * @param last_used
+	 * @param age
+	 * @param reseauSociaux
+	 * @param dateCreate
+	 * @param dateUpdate
+	 * @param titre_cv
+	 * @param adresse
+	 */
+	public Profile(String civilite, String nom, String prenom, Date dateNaiss, String email, String passwd,
+			Timestamp last_used, int age, String reseauSociaux, Timestamp dateCreate, Timestamp dateUpdate,
+			Set<TitreCV> titre_cv, Set<Adresse> adresse) {
 		super();
 		this.civilite = civilite;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaiss = dateNaiss;
+		this.email = email;
+		this.passwd = passwd;
+		this.last_used = last_used;
 		this.age = age;
 		this.reseauSociaux = reseauSociaux;
 		this.dateCreate = dateCreate;
 		this.dateUpdate = dateUpdate;
-		this.numeroRue = numeroRue;
-		this.nomRue = nomRue;
-		this.autre = autre;
-		CodePostale = codePostale;
-		this.ville = ville;
-		this.pays = pays;
-		this.telephone = telephone;
-		Email = email;
 		this.titre_cv = titre_cv;
+		this.adresse = adresse;
 	}
 
+//---------------------------------------
 
 	/**
 	 * @return the idProfile
@@ -163,7 +171,7 @@ public class Profile implements Serializable {
 	 * @return the prenom
 	 */
 	public String getPrenom() {
-		return prenom;
+		return prenom ;
 	}
 
 	/**
@@ -171,20 +179,6 @@ public class Profile implements Serializable {
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	/**
-	 * @return the numeroRue
-	 */
-	public String getNumeroRue() {
-		return numeroRue;
-	}
-
-	/**
-	 * @param numeroRue the numeroRue to set
-	 */
-	public void setNumeroRue(String numeroRue) {
-		this.numeroRue = numeroRue;
 	}
 
 	/**
@@ -202,17 +196,33 @@ public class Profile implements Serializable {
 	}
 
 	/**
-	 * @return the nomRue
+	 * @return the passwd
 	 */
-	public String getNomRue() {
-		return nomRue;
+	public String getPasswd() {
+		return passwd;
 	}
 
 	/**
-	 * @param nomRue the nomRue to set
+	 * @param passwd the passwd to set
 	 */
-	public void setNomRue(String nomRue) {
-		this.nomRue = nomRue;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+	
+
+	/**
+	 * @return the age
+	 */
+	public int getAge() {
+		return age;
+	}
+
+	/**
+	 * @param age the age to set
+	 */
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	/**
@@ -230,130 +240,30 @@ public class Profile implements Serializable {
 	}
 
 	/**
-	 * @return the codePostale
-	 */
-	public int getCodePostale() {
-		return CodePostale;
-	}
-
-	/**
-	 * @param codePostale the codePostale to set
-	 */
-	public void setCodePostale(int codePostale) {
-		CodePostale = codePostale;
-	}
-
-	/**
-	 * @return the ville
-	 */
-	public String getVille() {
-		return ville;
-	}
-
-	/**
-	 * @param ville the ville to set
-	 */
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	/**
-	 * @return the pays
-	 */
-	public String getPays() {
-		return pays;
-	}
-
-	/**
-	 * @param pays the pays to set
-	 */
-	public void setPays(String pays) {
-		this.pays = pays;
-	}
-
-	/**
-	 * @return the telephone
-	 */
-	public int getTelephone() {
-		return telephone;
-	}
-
-	/**
-	 * @param telephone the telephone to set
-	 */
-	public void setTelephone(int telephone) {
-		this.telephone = telephone;
-	}
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return Email;
-	}
-
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		Email = email;
-	}
-
-	/**
-	 * @return the autre
-	 */
-	public String getAutre() {
-		return autre;
-	}
-
-	/**
-	 * @param autre the autre to set
-	 */
-	public void setAutre(String autre) {
-		this.autre = autre;
-	}
-
-	/**
-	 * @param age the age to set
-	 */
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	/**
-	 * @return the age
-	 */
-	public int getAge() {
-		return age;
-	}
-
-	/**
 	 * @return the dateCreate
 	 */
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
 	/**
 	 * @param dateCreate the dateCreate to set
 	 */
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
-
 
 	/**
 	 * @return the dateUpdate
 	 */
-	public Date getDateUpdate() {
+	public Timestamp getDateUpdate() {
 		return dateUpdate;
 	}
-
 
 	/**
 	 * @param dateUpdate the dateUpdate to set
 	 */
-	public void setDateUpdate(Date dateUpdate) {
+	public void setDateUpdate(Timestamp dateUpdate) {
 		this.dateUpdate = dateUpdate;
 	}
 
@@ -371,5 +281,61 @@ public class Profile implements Serializable {
 		this.titre_cv = titre_cv;
 	}
 
+	/**
+	 * @return the adresse
+	 */
+	public Set<Adresse> getAdresse() {
+		return adresse;
+	}
 
+	/**
+	 * @param adresse the adresse to set
+	 */
+	public void setAdresse(Set<Adresse> adresse) {
+		this.adresse = adresse;
+	}
+	
+	/**
+	 * @param last_used the last_used to set
+	 */
+	public void setLast_used(Timestamp last_used) {
+		this.last_used = last_used;
+	}
+
+	/**
+	 * @return the last_used
+	 */
+	public Timestamp getLast_used() {
+		return last_used;
+	}
+
+	/**
+	 * @return the login
+	 */
+	public Login getLogin() {
+		
+		return login ;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	
 }
