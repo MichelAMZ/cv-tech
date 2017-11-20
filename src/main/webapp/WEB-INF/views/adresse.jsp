@@ -43,21 +43,14 @@
 
 
 	<div class="container">
-
+${profile.nom } ${profile.prenom }
 		<div class="container-fluid">
-			<f:form modelAttribute="address" method="post" action="saveAdresse">
+			<f:form modelAttribute="adresse" method="post" action="saveAdresse">
 
 				<div class="input-group">
 					<span class="input-group-addon">Numero :</span>
-					<f:input path="numeroRue" class="form-control"
-						placeholder=" Numero de la rue " />
-				</div>
-				<br>
-
-				<div class="input-group">
-					<span class="input-group-addon">Nom :</span>
-					<f:input path="nomRue" class="form-control"
-						placeholder=" Nom de votre rue " />
+					<f:input path="numeroNomRue" class="form-control"
+						placeholder=" Numero et nom de rue " />
 				</div>
 				<br>
 
@@ -86,18 +79,6 @@
 				</div>
 				<br>
 
-				<div class="input-group">
-					<span class="input-group-addon">Telephone :</span>
-					<f:input path="telephone" class="form-control"
-						placeholder=" Numero de téléphone " />
-				</div>
-				<br>
-
-				<div class="input-group">
-					<span class="input-group-addon">Email :</span>
-					<f:input path="Email" class="form-control" placeholder=" Email " />
-				</div>
-
 				<div>
 					<f:hidden path="idAdresse" />
 				</div>
@@ -105,7 +86,6 @@
 					<button class="btn btn-default" type="submit" value="Save">
 							SAVE</button>
 
-		<br>
 			</f:form>
 		</div>
 	</div>

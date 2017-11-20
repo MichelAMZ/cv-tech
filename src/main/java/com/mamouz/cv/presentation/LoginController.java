@@ -39,6 +39,7 @@ public class LoginController {
 
 			model.addAttribute("profile", profile);
 			model.addAttribute("welcome", "Bonjour ");
+			model.addAttribute("deconn", "deconnexion");
 			return "profile";					
 		}
 		else{
@@ -49,10 +50,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/loginDeconneted")
-	public void deconnexion(){
-		Login login = new Login();
+	public String deconnexion(Model model){
 		
-		login.deconnexion();
+		Login login = new Login();
+		login.deconnexion();	
+		
+		model.addAttribute("login", login);
+		
+		return "login";
 	}
 	
 }

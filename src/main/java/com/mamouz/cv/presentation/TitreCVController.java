@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mamouz.cv.entity.Profile;
 import com.mamouz.cv.entity.TitreCV;
+import com.mamouz.cv.service.interfaces.IProfileService;
 import com.mamouz.cv.service.interfaces.ITitreService;
 
 /**
@@ -25,46 +26,49 @@ import com.mamouz.cv.service.interfaces.ITitreService;
 public class TitreCVController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProfilesController.class);
-	
-	@Resource(name="titreCVService")
+
+	@Resource(name = "titreCVService")
 	private ITitreService titreService;
-	Profile profile;
+
+	@Resource(name = "profileService")
+	private IProfileService profileService;
 
 	/*
 	 * HOME Profile liste et edit....
 	 */
 	@RequestMapping(value = "/titreCV")
-	public String getTitreCV(Locale locale, Model model) {
+	public String getTitreCV(Locale locale, Model model, long id) {
 
 		logger.info("\033[43m--------------IN Home TitreCVController ----------------\033[0m\n");
-	
-		model.addAttribute("titreCV", new TitreCV());
 
+		TitreCV titreCV = titreService.findById(id);
+
+		model.addAttribute("titreCV", titreCV);
+		
 		logger.info("\033[43m--------------OUT Home TitreCVController ----------------\033[0m\n");
 		return "titreCV";
 	}
-	
+
 	@RequestMapping(value = "/saveTitreCV")
 	public String createTitreCV(TitreCV t, Model model) {
 
 		logger.info("\033[43m--------------IN Create TitreCVCV Controller ----------------\033[0m\n");
-		
-		titreService.create(t);
-		
-		logger.debug("\033[42Le TitreCV à créer  : " + t + "\n-\033[0m");
-		
-		model.addAttribute("titreCV", new TitreCV());
-		model.addAttribute("listeTitreCV", titreService.findAll());
 
+		titreService.create(t);
+
+		Profile profile = profileService.findById(t.getIdTitreCV());
+
+		model.addAttribute("profile", profile);
+		
 		logger.info("\033[43m--------------OUT Create TitreCVCV Controller ----------------\033[0m\n");
 
-		return "profiles";
+		return "profile";
 	}
 
 	@RequestMapping(value = "/deleteTitreCV")
 	public String deleteTitreCV(int id, Model model) {
 		logger.info("\033[43m--------------IN delete TitreCVCV Controller ----------------\033[0m\n");
-		
+
 		titreService.remove(id);
 		model.addAttribute("titreCV", new TitreCV());
 		model.addAttribute("listeTitreCV", titreService.findAll());
@@ -75,16 +79,16 @@ public class TitreCVController {
 	@RequestMapping(value = "/editTitreCV")
 	public String editTitreCV(int id, Model model) {
 		logger.info("\033[43m--------------IN edit TitreCV Controller ----------------\033[0m\n");
-				
-		// On injecte l'id 
+
+		// On injecte l'id
 		TitreCV t = titreService.findById(id);
-				
+
 		titreService.update(t);
-		
+
 		model.addAttribute("titreCV", t);
-		model.addAttribute("listeTitreCV", titreService.findAll());
+
 		logger.info("\033[43m--------------OUT edit TitreCV Controller ----------------\033[0m\n");
 		return "profiles";
 	}
-	
+
 }

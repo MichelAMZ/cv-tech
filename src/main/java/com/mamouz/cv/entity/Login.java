@@ -115,6 +115,7 @@ public class Login implements Serializable {
 		password = null;
 		connected = false;
 	}
+	
 	public String deconnexion() {
 		init();
 		return "login";

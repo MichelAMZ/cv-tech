@@ -63,26 +63,26 @@ public class LoginDao implements ILogin {
 						password = login2.getPassword();
 					}
 				}
-				
+
+				// session.close(); TODO fermer la session ou non ?
 				try {
 
 					// Si les données sont les même que les saisie
 					if (mail.equals(login.getEmail()) && password.equals(login.getPassword())) {
 
-							// On récupère les données du profile.
-						 p = session.load(Profile.class, id);
-						 
+						// On récupère les données du profile.
+						p = session.load(Profile.class, id);
+
 					} else {
 						p = null;
 					}
 
 				} catch (Exception e) {
-					
-				}
-				finally {
+
+				} finally {
 					return p;
 				}
-//				session.close();
+				// session.close();
 			}
 		}
 		return p;
@@ -99,6 +99,10 @@ public class LoginDao implements ILogin {
 
 			// Début de la transaction.
 			Transaction tx = session.beginTransaction();
+
+			String eml = login.getEmail();
+			String pwd = login.getPassword();
+			long id = login.getIdLogin();
 
 			session.saveOrUpdate(login);
 			tx.commit();
@@ -119,7 +123,34 @@ public class LoginDao implements ILogin {
 
 	@Override
 	public void remove(long id) {
-		// TODO Auto-generated method stub
+		try {
+			log.info("\033[43m----------------- IN remove login ----------------\033[0m\n");
+
+			// ouverture de la session.
+			Session session = this.sessionFactory.openSession();
+
+			// Début de la transaction.
+			Transaction tx = session.beginTransaction();
+
+			// on récupère le profile à supprimer
+			Login login = session.load(Login.class, id);
+
+			if (login != null) {
+				// On supprime le profile.
+				session.delete(login);
+			}
+
+			tx.commit();
+
+			log.debug("\033[42mlogin supprimé avec succès : \n" + login + "\033[0m\n");
+
+			// fermeture de la session.
+			session.close();
+
+			log.info("\033[43m----------------- OUT remove login ----------------\033[0m\n");
+		} catch (Exception e) {
+			log.error("\033[41mProblème dans la supression  de Login : " + e + "\033[0m\n");
+		}
 
 	}
 

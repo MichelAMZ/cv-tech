@@ -45,18 +45,14 @@
 	<div class="container">
 		<div class="container-fluid">
 			<h1>Liste de profiles enregistrés</h1>
-			<a href="createProfile"><button type="button" class="btn btn-secondary btn-lg btn-block">
-				Créer un CV
-			</button></a>
-			<br>
+			<a href="register"><button type="button"
+					class="btn btn-secondary btn-lg btn-block">Créer un CV</button></a> <br>
 
 
 			<div class="container">
 				<table class="table" class="table-responsive">
 
-					<caption>
-						Liste de profiles
-					</caption>
+					<caption>Liste de profiles</caption>
 
 					<tr>
 						<th>CIVILITE</th>
@@ -89,9 +85,12 @@
 
 				</table>
 			</div>
+			<!-- //////////// FOOTER /////////////////////// -->
+			<jsp:include page="footer.jsp">
+				<jsp:param name="year" value="2017" />
+			</jsp:include>
+			<!-- fin footer -->
 		</div>
-	</div>
-</body>
 </html>
 
 

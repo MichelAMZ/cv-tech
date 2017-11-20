@@ -4,7 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %><html>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%><html>
 <head>
 
 <meta charset="utf-8">
@@ -20,24 +20,7 @@
 <body>
 	<div class="container">
 		<!-- Menus -->
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#myNavbar">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<!-- 				<a class="navbar-brand" href="#">Trouver un CV</a> -->
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="active"><a href="/cv">Home</a></li>
-						<li><a href="profiles">Liste de profiles</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<%@include file="navBarre.jsp"%>
 	</div>
 	<!-- --------------------------------- EN TETE------------------------------------------------ -->
 	<div class="container">
@@ -53,11 +36,11 @@
 		</div>
 
 		<!-- ---------------------------FORMS PROFILE----------------------------- -->
-	
-		
 
-		<f:form modelAttribute="profile" method="post" action="saveProfile"
-			name="formProfile">
+
+
+		<f:form modelAttribute="profile" method="post"
+			action="saveRegistration" name="formProfile">
 			<div class="container-fluid">
 				<div class="input-group">
 					<span class="input-group-addon">Civilité :</span>
@@ -88,15 +71,22 @@
 						placeholder=" Votre date de naissance" />
 				</div>
 				<br>
-				
+
+				<div class="input-group">
+					<span class="input-group-addon">Telephone :</span>
+					<f:input path="telephone" class="form-control"
+						placeholder=" Numero de téléphone " />
+				</div>
+				<br>
+
 				<div class="input-group">
 					<span class="input-group-addon">Email :</span>
 					<f:input type="email" path="email" class="form-control"
 						placeholder=" votre mail" />
 				</div>
 				<br>
-				
-				
+
+
 				<div class="input-group">
 					<span class="input-group-addon">Mot de passe :</span>
 					<f:input type="password" path="passwd" class="form-control"
@@ -106,104 +96,19 @@
 
 			</div>
 
-
-			<!-- -------------------------- TTITRE CV -------------------------------------->
-			<div class="container-fluid">
-				<f:form modelAttribute="titreCV" method="post" action="saveTitreCV"
-					name="formTitrecv">
-
-					<!-- -------------------------- ADRESSE -------------------------------------->
-
-					<div class="container-fluid">
-						<f:form modelAttribute="adresse" method="post"
-							action="saveAdresse" name="formAdresse">
-
-							<div class="input-group">
-								<span class="input-group-addon">Numero :</span>
-								<f:input path="numeroNomRue" class="form-control"
-									placeholder=" Numero et nom de la rue " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Autre :</span>
-								<f:input path="autre" class="form-control" placeholder=" Autre " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Code postale :</span>
-								<f:input path="CodePostale" class="form-control"
-									placeholder=" le code postale" />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Ville :</span>
-								<f:input path="ville" class="form-control" placeholder=" Ville " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">pays :</span>
-								<f:input path="pays" class="form-control" placeholder=" Pays " />
-							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Telephone :</span>
-								<f:input path="telephone" class="form-control"
-									placeholder=" Numero de téléphone " />
-							</div>
-							<br>
-
-							<div>
-								<f:hidden path="idAdresse" />
-							</div>
-
-							<!-- 					<input type="submit" value="Save"> -->
-
-						</f:form>
-					</div>
-					<br>
-
-					<div class="input-group">
-						<span class="input-group-addon">TITRE DU CV:</span>
-						<f:input path="titre" class="form-control"
-							placeholder="TITRE: développeur java ..." />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">POSTE RECHERCHE:</span>
-						<f:input path="typePoste" class="form-control"
-							placeholder=" JEE / ASP.NET ... " />
-					</div>
-
-					<div>
-						<f:hidden path="idTitreCV" />
-					</div>
-					<div class="input-group">
-						<input type="submit" value="Save">
-					</div>
-
-				</f:form>
-			</div>
-
-
-			<br>
 			<div class="input-group">
 				<f:hidden path="idProfile" />
 			</div>
 			<br>
 
-			<!-- 			<button class="btn btn-default" type="submit" value="Save"> -->
-			<!-- 				SAVE</button> -->
+			<button class="btn btn-default" type="submit" value="Save">
+				SAVE</button>
 
 			<br>
 
 		</f:form>
 	</div>
-
+	<%@include file="footer.jsp"%>
 </body>
 </html>
 

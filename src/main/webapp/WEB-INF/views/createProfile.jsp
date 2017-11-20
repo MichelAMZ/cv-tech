@@ -54,18 +54,6 @@
 
 
 		<!-- ---------------------------FORMS PROFILE----------------------------- -->
------ ttttttttest------
-
-
-
-<%-- <form action = "main.jsp" method = "GET"> --%>
-<!--          First Name: <input type = "text" name = "first_name"> -->
-<!--          <br /> -->
-<!--          Last Name: <input type = "text" name = "last_name" /> -->
-<!--          <input type = "submit" value = "Submit" /> -->
-<%--       </form> --%>
-
-
 
 		<f:form modelAttribute="profile" method="post" action="saveProfile"
 			name="formProfile">
@@ -153,14 +141,7 @@
 								<span class="input-group-addon">pays :</span>
 								<f:input path="pays" class="form-control" placeholder=" Pays " />
 							</div>
-							<br>
-
-							<div class="input-group">
-								<span class="input-group-addon">Telephone :</span>
-								<f:input path="telephone" class="form-control"
-									placeholder=" Numero de téléphone " />
-							</div>
-
+							
 							<div>
 								<f:hidden path="idAdresse" />
 							</div>
@@ -208,6 +189,7 @@
 		</f:form>
 	</div>
 
+	<%@include file="footer.jsp"%>
 
 </body>
 </html>

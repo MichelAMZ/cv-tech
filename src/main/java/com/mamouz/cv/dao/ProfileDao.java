@@ -42,6 +42,7 @@ public class ProfileDao implements IProfile {
 			// Début de la transaction.
 			Transaction tx = session.beginTransaction();
 
+			
 			session.saveOrUpdate(p);
 			tx.commit();
 
@@ -135,12 +136,14 @@ public class ProfileDao implements IProfile {
 		return profileList;
 	}
 
+	// A ne pas tenir compte.
 	@Override
 	public void register(Profile user) {
 		// TODO Auto-generated method stub
 
 	}
 
+	// A ne pas tenir compte.
 	@Override
 	public Login validateUser(Login login) {
 		// TODO Auto-generated method stub

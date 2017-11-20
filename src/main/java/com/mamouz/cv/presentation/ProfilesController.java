@@ -15,6 +15,7 @@ import com.mamouz.cv.entity.Adresse;
 import com.mamouz.cv.entity.Profile;
 import com.mamouz.cv.entity.TitreCV;
 import com.mamouz.cv.service.interfaces.IAdresseservice;
+import com.mamouz.cv.service.interfaces.ILoginService;
 import com.mamouz.cv.service.interfaces.IProfileService;
 import com.mamouz.cv.service.interfaces.ITitreService;
 
@@ -26,9 +27,11 @@ public class ProfilesController {
 	@Resource(name = "profileService")
 	private IProfileService profileService;
 
+	@Resource(name = "loginService")
+	private ILoginService loginService;
+
 	@Resource(name = "titreCVService")
 	private ITitreService titreService;
-	private IAdresseservice adService;
 
 	/*
 	 * HOME Profile liste et edit....
@@ -58,6 +61,8 @@ public class ProfilesController {
 		logger.info("\033[43m--------------IN delete ProfileController ----------------\033[0m\n");
 		logger.info("control id : " + id);
 		profileService.remove(id);
+		loginService.remove(id);
+		
 		model.addAttribute("profile", new Profile());
 		model.addAttribute("profiles", profileService.findAll());
 		logger.info("\033[43m--------------OUT delete ProfileController ----------------\033[0m\n");

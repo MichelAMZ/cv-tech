@@ -10,13 +10,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
+ 
+           <div class="container">
+<!-- Menus -->
+	<jsp:include page="navBarre.jsp" />
+	
+	
+<div class="container-fluid">
   <form:form id="loginForm" modelAttribute="login" action="loginProcess" method="post">
                 <table align="center">
                     <tr>
                         <td>
-<%--                             <form:label path="email">email: </form:label> --%>
+                            <form:label path="email">Email:</form:label>
                         </td>
                         <td>
                             <form:input path="email" name="email" id="username" />
@@ -36,12 +41,7 @@
                             <form:button id="login" name="login">Login</form:button>
                         </td>
                     </tr>
-<!--                     <tr></tr> -->
-                    <tr>
-                        <td></td>
-                        <td><a href="\cv">Home</a>
-                        </td>
-                    </tr>
+  
                 </table>
             </form:form>
             <table align="center">
@@ -50,5 +50,12 @@
                 </tr>
             </table>
            <h2>${ErrorLogin }</h2> 
+          
+		</div>
+		<!-- //////////// FOOTER /////////////////////// -->
+		
+	<%@include file="footer.jsp"%>
+		<!-- fin footer -->
+	</div>
 </body>
 </html>

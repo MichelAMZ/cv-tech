@@ -35,8 +35,8 @@ public class Adresse implements Serializable {
 	private String ville;
 
 	private String pays;
-
-	private int telephone;
+//
+//	private int telephone;
 
 //	private String Email;
 
@@ -54,14 +54,14 @@ public class Adresse implements Serializable {
  * @param pays
  * @param telephone
  */
-public Adresse(String numeroNomRue, String autre, int codePostale, String ville, String pays, int telephone) {
+public Adresse(String numeroNomRue, String autre, int codePostale, String ville, String pays/*, int telephone*/) {
 	super();
 	this.numeroNomRue = numeroNomRue;
 	this.autre = autre;
 	CodePostale = codePostale;
 	this.ville = ville;
-	this.pays = pays;
-	this.telephone = telephone;
+//	this.pays = pays;
+//	this.telephone = telephone;
 }
 
 /****************************************/
@@ -151,18 +151,22 @@ public Adresse(String numeroNomRue, String autre, int codePostale, String ville,
 		this.pays = pays;
 	}
 
-	/**
-	 * @return the telephone
-	 */
-	public int getTelephone() {
-		return telephone;
-	}
+//	public void getIdAdresse(long id) {
+//		idAdresse = 1;
+//	}
 
-	/**
-	 * @param telephone the telephone to set
-	 */
-	public void setTelephone(int telephone) {
-		this.telephone = telephone;
-	}
+//	/**
+//	 * @return the telephone
+//	 */
+//	public int getTelephone() {
+//		return telephone;
+//	}
+//
+//	/**
+//	 * @param telephone the telephone to set
+//	 */
+//	public void setTelephone(int telephone) {
+//		this.telephone = telephone;
+//	}
 	
 }

@@ -62,7 +62,6 @@ public class CreateProfileConrtroller {
 		
 		return "createProfile";
 	}
-
 	
 	/*
 	 * Class create Profile
@@ -89,10 +88,7 @@ public class CreateProfileConrtroller {
 			
 
 			logger.debug("\033[42Le Profile à créer  : " + p + "\n-\033[0m");
-				
-			// Affichage de l'identité du profile
-			model.addAttribute("profile", new Profile());
-
+		
 			// Affichage d'identité des profiles
 			model.addAttribute("profile", profileService.findById(p.getIdProfile()));
 

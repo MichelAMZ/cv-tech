@@ -3,6 +3,7 @@
  */
 package com.mamouz.cv.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -145,12 +146,19 @@ public class AdresseDao implements IAdresse {
 		@SuppressWarnings("unchecked")
 		List<Adresse> adresseList = session.createQuery("from Adresse").list();
 		session.close();
-		if (adresseList == null) {
-			Object obj = "Rien à afficher dans la liste !";
-			return adresseList = (List) obj;
+		
+		List<Adresse> adresses = new ArrayList<Adresse>();
+		
+		for (Adresse adresse : adresseList) {
+			
+			if(!adresse.getNumeroNomRue().isEmpty()){
+				adresses = adresseList;
+			}else{
+				adresses =  null;
+			}
 		}
-
-		return adresseList;
+		
+		return adresses;
 	}
 
 	@Override

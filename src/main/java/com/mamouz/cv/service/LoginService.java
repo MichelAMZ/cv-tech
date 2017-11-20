@@ -46,7 +46,7 @@ public class LoginService implements ILoginService {
 
 	@Override
 	public void remove(long id) {
-		// TODO Auto-generated method stub
+		loginDao.remove(id);
 		
 	}
 

@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Lazy;
@@ -51,6 +52,8 @@ public class Profile implements Serializable {
 	private Date dateNaiss;
 	
 	private String email;
+
+	private int telephone;
 	
 	private String passwd;
 	
@@ -75,11 +78,16 @@ public class Profile implements Serializable {
 			@JoinColumn(name = "idTitreCV") })
 	private Set<TitreCV> titre_cv = new HashSet<TitreCV>(0);
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@Lazy(false)
 	@JoinTable(name = "PROFILE_ADRESEE", joinColumns = { @JoinColumn(name = "idProfile") }, inverseJoinColumns = {
 			@JoinColumn(name = "idAdresse") })
 	private Set<Adresse> adresse = new HashSet<Adresse>(0);
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "profile_experiences", 
+	           joinColumns = @JoinColumn(name = "idProfile"))
+	private Set<Experiences> experiences = new HashSet<Experiences>(0);
 	
 	/**
 	 * 
@@ -95,35 +103,39 @@ public class Profile implements Serializable {
 	 * @param prenom
 	 * @param dateNaiss
 	 * @param email
+	 * @param telephone
 	 * @param passwd
 	 * @param last_used
+	 * @param login
 	 * @param age
 	 * @param reseauSociaux
 	 * @param dateCreate
 	 * @param dateUpdate
 	 * @param titre_cv
 	 * @param adresse
+	 * @param experiences
 	 */
-	public Profile(String civilite, String nom, String prenom, Date dateNaiss, String email, String passwd,
-			Timestamp last_used, int age, String reseauSociaux, Timestamp dateCreate, Timestamp dateUpdate,
-			Set<TitreCV> titre_cv, Set<Adresse> adresse) {
+	public Profile(String civilite, String nom, String prenom, Date dateNaiss, String email, int telephone,
+			String passwd, Timestamp last_used, Login login, int age, String reseauSociaux, Timestamp dateCreate,
+			Timestamp dateUpdate, Set<TitreCV> titre_cv, Set<Adresse> adresse, Set<Experiences> experiences) {
 		super();
 		this.civilite = civilite;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaiss = dateNaiss;
 		this.email = email;
+		this.telephone = telephone;
 		this.passwd = passwd;
 		this.last_used = last_used;
+		this.login = login;
 		this.age = age;
 		this.reseauSociaux = reseauSociaux;
 		this.dateCreate = dateCreate;
 		this.dateUpdate = dateUpdate;
 		this.titre_cv = titre_cv;
 		this.adresse = adresse;
+		this.experiences = experiences;
 	}
-
-//---------------------------------------
 
 	/**
 	 * @return the idProfile
@@ -171,7 +183,7 @@ public class Profile implements Serializable {
 	 * @return the prenom
 	 */
 	public String getPrenom() {
-		return prenom ;
+		return prenom;
 	}
 
 	/**
@@ -196,6 +208,34 @@ public class Profile implements Serializable {
 	}
 
 	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the telephone
+	 */
+	public int getTelephone() {
+		return telephone;
+	}
+
+	/**
+	 * @param telephone the telephone to set
+	 */
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
+	}
+
+	/**
 	 * @return the passwd
 	 */
 	public String getPasswd() {
@@ -209,7 +249,33 @@ public class Profile implements Serializable {
 		this.passwd = passwd;
 	}
 
-	
+	/**
+	 * @return the last_used
+	 */
+	public Timestamp getLast_used() {
+		return last_used;
+	}
+
+	/**
+	 * @param last_used the last_used to set
+	 */
+	public void setLast_used(Timestamp last_used) {
+		this.last_used = last_used;
+	}
+
+	/**
+	 * @return the login
+	 */
+	public Login getLogin() {
+		return login;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 
 	/**
 	 * @return the age
@@ -294,48 +360,19 @@ public class Profile implements Serializable {
 	public void setAdresse(Set<Adresse> adresse) {
 		this.adresse = adresse;
 	}
-	
+
 	/**
-	 * @param last_used the last_used to set
+	 * @return the experiences
 	 */
-	public void setLast_used(Timestamp last_used) {
-		this.last_used = last_used;
+	public Set<Experiences> getExperiences() {
+		return experiences;
 	}
 
 	/**
-	 * @return the last_used
+	 * @param experiences the experiences to set
 	 */
-	public Timestamp getLast_used() {
-		return last_used;
+	public void setExperiences(Set<Experiences> experiences) {
+		this.experiences = experiences;
 	}
 
-	/**
-	 * @return the login
-	 */
-	public Login getLogin() {
-		
-		return login ;
-	}
-
-	/**
-	 * @param login the login to set
-	 */
-	public void setLogin(Login login) {
-		this.login = login;
-	}
-
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	
 }
