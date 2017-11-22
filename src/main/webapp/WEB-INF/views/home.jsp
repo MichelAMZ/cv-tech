@@ -17,25 +17,8 @@
 <body>
 
 	<!-- Menus -->
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Mon CV</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav nav-tabs" role="tablist">
-					<li><a href="profiles">Liste de profiles</a></li>
-					<li><a href="createProfile">Créer un CV</a></li>
-					<li><a href="titreCV">Titre du cv</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	
+			<jsp:include page="navBarre.jsp" />
 	<!-- fin navbar -->
 
 	<div class="container">

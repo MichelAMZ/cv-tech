@@ -21,7 +21,6 @@
 <div class="container">
 		<!-- Menus -->
 		<nav class="navbar navbar-default">
-			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#myNavbar">
@@ -34,12 +33,12 @@
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="active"><a href="/cv">Home</a></li>
 						<li><a href="profiles">Liste de profiles</a></li>
-						<li><a href="experience">Experinces</a></li>
+<!-- 						<li><a href="experience">Experinces</a></li> -->
 					</ul>
 				</div>
-				
-			</div>
 		</nav>
+		
+		
 	</div>
 </body>
 </html>
