@@ -28,9 +28,10 @@
 	
 	<!-- Menus -->
 	<jsp:include page="navBarre.jsp" />
+	<hr>
 	
 		<!-- -------------------------- TTITRE CV -------------------------------------->
-		<div class="container-fluid">
+		<div class="container-fluid jumbotron jumbotron-fluid bg-4 text-center">
 
 
 	<f:form modelAttribute="titreCV" method="post" action="saveTitreCV">

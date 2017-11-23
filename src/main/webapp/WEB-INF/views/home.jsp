@@ -16,43 +16,59 @@
 </head>
 <body>
 
-	<!-- Menus -->
-	
-			<jsp:include page="navBarre.jsp" />
-	<!-- fin navbar -->
+	<div class="container body-content">
 
-	<div class="container">
+		<!-- Menus -->
+		<jsp:include page="navBarre.jsp" />
+		<!-- fin navbar -->
+		<hr>
 
-		<div class="page-header">
+		<div class="page-header jumbotron jumbotron-fluid bg-4 text-center"
+			style="color: green">
+			<h1>CV Tech</h1>
+
 			<p>${serverTime}</p>
-			<h1>PAGE D'ACCUEIL !</h1>
 		</div>
 
 		<!-- 		<a href="createProfile"><button type="button" -->
 		<!-- 				class="btn btn-secondary btn-lg btn-block">Créer un CV</button></a> -->
 
 		<br>
-
-		<div class="container-fluid" align="center">
-			<div class="col-sm-4" style="background-color: lavender;"
-				align="center">
-				<a href="login">Login</a>
-			</div>
-			<div class="col-sm-4" style="background-color: lavenderblush;"
-				align="center">
-				<a href="register">Register</a>
+		<div class="container-fluid">
+			<div class="row" align="center">
+				<div class="col-md-4">
+					<h2>Enregistrez-vous</h2>
+					<p>Créez un compte pour pouvoir vous enregister.</p>
+					<p>
+						<a class="btn btn-default" href="register">S'enregistrer</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>Connectez-vous</h2>
+					<p>Pour allez sur votre compte</p>
+					<p>
+						<a class="btn btn-default" href="login">Login</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>Liste de CV</h2>
+					<p>Vous pouvez voir la liste des CV.</p>
+					<p>
+						<a class="btn btn-default" href="profiles">Liste de CV</a>
+					</p>
+				</div>
 			</div>
 		</div>
+
+
+
+
 		<!-- //////////// FOOTER /////////////////////// -->
 
 		<jsp:include page="footer.jsp">
 			<jsp:param name="year" value="2017" />
 		</jsp:include>
 		<!-- fin footer -->
-
-
-
-
 
 	</div>
 

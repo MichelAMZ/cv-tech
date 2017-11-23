@@ -4,7 +4,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%><html>
 <head>
 
 <meta charset="utf-8">
@@ -21,7 +20,7 @@
 <div class="container">
 		<!-- //////////// FOOTER /////////////////////// -->	
 			<hr>
-		<footer class="container-fluid jumbotron jumbotron-fluid bg-4 text-center">
+		<footer class="container-fluid bg-4 text-center"  style="background-color:#A9E2F3;">
 			<h3>Application CV Tech - (projet en-cours) </h3>
 			<p>Application CRUD Maven / Spring MVC / Hibernate / Log4j / MySQL / Bootstrap</p>
 			<p>- nov 2017 -</p>

@@ -188,8 +188,10 @@
 
 		</f:form>
 	</div>
-
-	<%@include file="footer.jsp"%>
+<!-- //////////// FOOTER /////////////////////// -->
+		<jsp:include page="footer.jsp">
+			<jsp:param name="year" value="2017" />
+		</jsp:include>
 
 </body>
 </html>

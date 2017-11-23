@@ -5,8 +5,6 @@ package com.mamouz.cv.service.interfaces;
 
 import java.util.List;
 
-import com.mamouz.cv.entity.Login;
-
 /**
  * @author mikak
  *

@@ -7,7 +7,6 @@ import java.util.Locale;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.annotation.Resources;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

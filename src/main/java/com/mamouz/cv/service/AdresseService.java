@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.mamouz.cv.dao.interfaces.IAdresse;
 import com.mamouz.cv.entity.Adresse;
-import com.mamouz.cv.entity.Login;
 import com.mamouz.cv.service.interfaces.IAdresseservice;
 
 /**

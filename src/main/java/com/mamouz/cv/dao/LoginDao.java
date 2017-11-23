@@ -6,7 +6,6 @@ package com.mamouz.cv.dao;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.jsp.tagext.TryCatchFinally;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -99,10 +98,6 @@ public class LoginDao implements ILogin {
 
 			// Début de la transaction.
 			Transaction tx = session.beginTransaction();
-
-			String eml = login.getEmail();
-			String pwd = login.getPassword();
-			long id = login.getIdLogin();
 
 			session.saveOrUpdate(login);
 			tx.commit();

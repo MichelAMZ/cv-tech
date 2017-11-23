@@ -14,7 +14,6 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.mamouz.cv.dao.interfaces.ITitreCV;
-import com.mamouz.cv.entity.Login;
 import com.mamouz.cv.entity.TitreCV;
 
 /**

@@ -18,27 +18,20 @@
 <title>CV</title>
 </head>
 <body>
-<div class="container">
-		<!-- Menus -->
-		<nav class="navbar navbar-default">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#myNavbar">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<!-- 				<a class="navbar-brand" href="#">Trouver un CV</a> -->
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="active"><a href="/cv">Home</a></li>
-						<li><a href="profiles">Liste de profiles</a></li>
-<!-- 						<li><a href="experience">Experinces</a></li> -->
-					</ul>
-				</div>
-		</nav>
-		
-		
-	</div>
+
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: green;">
+        <div class="container" >
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/cv">Home</a></li> 
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

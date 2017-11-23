@@ -25,19 +25,20 @@
 		<!-- Barre de menus -->
 		<div class="container-fluid badge badge-success">
 
-
-			<form action="loginDeconneted" method="GET">
-				<span class="badge badge-pill badge-success">${welcome }
-					${profile.nom } ${profile.prenom }</span>
-				<c:if test="${not empty deconn}">
-					<input class="btn btn-primary btn-xs" type="submit" name="action"
-						value=${deconn } />
-				</c:if>
-
-			</form>
-
 			<jsp:include page="navBarre.jsp" />
 		</div>
+
+		<hr>
+
+		<form action="loginDeconneted" method="GET">
+			<span class="badge badge-pill badge-success">${welcome }
+				${profile.prenom } ${profile.nom }</span>
+			<c:if test="${not empty deconn}">
+				<input class="btn btn-primary btn-xs" type="submit" name="action"
+					value=${deconn } />
+			</c:if>
+
+		</form>
 		<hr>
 		<!-- Fin barre de menus -->
 
@@ -46,7 +47,7 @@
 		<div class="media well well-lg">
 
 			<div class="media-left">
-				<c:if test="${profile.civilite == Mr}" > 
+				<c:if test="${profile.civilite == Mr}">
 					<div>
 						<span class="glyphicon glyphicons-girl media-object"
 							style="width: 60px"></span>
@@ -108,24 +109,16 @@
 		</div>
 		<!-- Fin adresse card  -->
 
-
-
-
-
-		<!-- ------------------------- Experiences CARD---------------------------------- -->
-
-		<!-- /////////////////// Conteneur left-b //////////////////////-->
-		<div class="container-fluid"></div>
-		<!-- fin conteneur left-b -->
-
-		<!-- Conteneur right- H -->
-		<div class="container-fluid"></div>
-		<!-- Conteneur middle-1 -->
-		<div class="container-fluid"></div>
-
-		<!-- Conteneur left-R -->
-		<div class="container-fluid"></div>
-
+<c:if test="${not empty deconn}">
+<%-- 		<a href="myCV?id=${profile.nom }_${profile.prenom }"><button type="button" --%>
+<!-- 				class="btn-primary btn-sm btn-block btn btn-warning"> -->
+<!-- 				Voir le CV</button> </a> -->
+				
+				
+		<a href="myCV?id=${profile.idProfile}"><button type="button"
+				class="btn-primary btn-sm btn-block btn btn-warning">
+				Voir le CV</button> </a>
+</c:if>
 		<!-- LE DIV CONTENEUR -->
 		<!-- //////////// FOOTER /////////////////////// -->
 		<jsp:include page="footer.jsp">

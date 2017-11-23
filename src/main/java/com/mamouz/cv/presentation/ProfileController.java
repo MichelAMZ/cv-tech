@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mamouz.cv.entity.Adresse;
 import com.mamouz.cv.entity.Profile;
 import com.mamouz.cv.service.interfaces.IAdresseservice;
 import com.mamouz.cv.service.interfaces.IProfileService;

@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mamouz.cv.dao.interfaces.ITitreCV;
-import com.mamouz.cv.entity.Login;
 import com.mamouz.cv.entity.TitreCV;
 import com.mamouz.cv.service.interfaces.ITitreService;
 
